@@ -16,4 +16,6 @@ echo "qemu-system-x86_64 \
     -usb -device usb-tablet\
     -drive file=/run/media/solarinas/Tay/VMs/$1.qcow2,format=qcow2,l2-cache-size=8M \
     -vga virtio \
-    -display gtk" > ~/.VMs/$1
+    -display gtk" > ~/bin/$1
+chmod +x ~/.VMs/$1
+~/.VMs/$1
