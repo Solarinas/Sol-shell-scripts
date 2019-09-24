@@ -12,10 +12,11 @@ echo "qemu-system-x86_64 \
     -smp cores=4,threads=1,sockets=1,maxcpus=4 \
     -cpu host \
     -machine q35,accel=kvm \
+    -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd \
+    -drive if=pflash,format=raw,file=/tmp/MY_VARS.fd \
     -cdrom /run/media/solarinas/Shelly/OS/$ISO \
     -usb -device usb-tablet\
     -drive file=/run/media/solarinas/Tay/VMs/$1.qcow2,format=qcow2,l2-cache-size=8M \
     -vga virtio \
-    -display gtk" > ~/bin/$1
-chmod +x ~/.VMs/$1
-~/.VMs/$1
+    -display gtk" > ~/.local/bin/$1
+chmod +x ~/.local/bin/$1
