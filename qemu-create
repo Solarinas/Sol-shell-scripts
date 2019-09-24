@@ -2,8 +2,9 @@
 
 # Generate variables
 ISO="$(ls /run/media/solarinas/Shelly/OS | fzf)"
-qemu-img create -f qcow2 /run/media/solarinas/Tay/VMs/$1.qcow2 $2G
+SCRIPT_PATH=~/.local/bin
 
+qemu-img create -f qcow2 /run/media/solarinas/Tay/VMs/$1.qcow2 $2G
 
 
 echo "qemu-system-x86_64 \
@@ -18,5 +19,5 @@ echo "qemu-system-x86_64 \
     -usb -device usb-tablet\
     -drive file=/run/media/solarinas/Tay/VMs/$1.qcow2,format=qcow2,l2-cache-size=8M \
     -vga virtio \
-    -display gtk" > ~/.local/bin/$1
-chmod +x ~/.local/bin/$1
+    -display gtk" > $SCRIPT_PATH/$1
+chmod +x $SCRIPT_PATH/$1
