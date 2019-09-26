@@ -4,9 +4,10 @@
 ISO="$(ls /run/media/solarinas/Shelly/OS | fzf)"
 SCRIPT_PATH=~/.local/bin
 
+# Create QEMU img
 qemu-img create -f qcow2 /run/media/solarinas/Tay/VMs/$1.qcow2 $2G
 
-
+# Generate qemu launch scipt
 echo "qemu-system-x86_64 \
     -enable-kvm \
     -m 2G \
@@ -20,4 +21,6 @@ echo "qemu-system-x86_64 \
     -drive file=/run/media/solarinas/Tay/VMs/$1.qcow2,format=qcow2,l2-cache-size=8M \
     -vga virtio \
     -display gtk" > $SCRIPT_PATH/$1
+
+# Give script execute permissions
 chmod +x $SCRIPT_PATH/$1
