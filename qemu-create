@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate variables
-ISO="$(ls /run/media/solarinas/Shelly/OS | fzf)"
+ISO="$(ls /run/media/solarinas/Shelly/OS | fzf -e)"
 SCRIPT_PATH=~/.local/bin
 
 # Create QEMU img
@@ -12,14 +12,17 @@ echo "qemu-system-x86_64 \
     -enable-kvm \
     -m 2G \
     -smp cores=4,threads=1,sockets=1,maxcpus=4 \
-    -cpu host \
+    -cpu host,kvm=off,kernel_irqchip=on \
     -machine q35,accel=kvm \
     -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd \
     -drive if=pflash,format=raw,file=/tmp/MY_VARS.fd \
     -cdrom /run/media/solarinas/Shelly/OS/$ISO \
     -usb -device usb-tablet\
     -drive file=/run/media/solarinas/Tay/VMs/$1.qcow2,format=qcow2,l2-cache-size=8M \
+    -soundhw hda \
     -vga virtio \
+    -device vfio-pci,host=04:00.0 \
+    -device vfio-pci,host=04:00.1 \
     -display gtk" > $SCRIPT_PATH/$1
 
 # Give script execute permissions
