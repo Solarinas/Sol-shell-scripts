@@ -2,7 +2,7 @@
 
 SCREENSHOTS_DIR=~/Pictures/Screenshots
 FILENAME=$SCREENSHOTS_DIR/$(date +%F_%H%M%S).png
-NOTIFICATION_PICTURE="~/.scripts/gabriel-notification-icons/proxy.duckduckgo.com.jpg"
+NOTIFICATION_PICTURE="/home/solarinas/.scripts/gabriel-notification-icons/proxy.duckduckgo.com.jpg"
 
 # Screenshot selection
 if [[ "$1" = "-s" ]]; then
