@@ -12,8 +12,8 @@ echo "qemu-system-x86_64 \
     -enable-kvm \
     -m 2G \
     -smp cores=4,threads=1,sockets=1,maxcpus=4 \
-    -cpu host,kvm=off,kernel_irqchip=on \
-    -machine q35,accel=kvm \
+    -cpu host,kvm=off \
+    -machine q35,accel=kvm,kernel_irqchip=on \
     -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd \
     -drive if=pflash,format=raw,file=/tmp/MY_VARS.fd \
     -cdrom /run/media/solarinas/Shelly/OS/$ISO \
