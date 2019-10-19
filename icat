@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
 source "`ueberzug library`"
-IMAGE=$1
 
-# group commands example:
-{
-    ImageLayer::add [identifier]="example0" [x]="0" [y]="0" [path]=$1
+Y_AXIS=$(expr $(tput lines) / 4 )
+X_AXIS=$(expr $(tput cols) / 4 )
+
+for (( i=1; i<=$#; i++ ))
+do
+    clear
+    {
+    ImageLayer::add [identifier]="Image${i}" [x]=$X_AXIS [y]=$Y_AXIS [path]=${!i}
     read
-} | ImageLayer
+    } | ImageLayer  
+    
+    #Y_AXIS=`expr $Y_AXIS + 10`
 
-
+done

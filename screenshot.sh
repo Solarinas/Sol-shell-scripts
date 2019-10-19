@@ -6,7 +6,6 @@ NOTIFICATION_PICTURE="/home/solarinas/.scripts/gabriel-notification-icons/proxy.
 
 # Screenshot selection
 if [[ "$1" = "-s" ]]; then
-    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE 
     maim -o -u -d 1 -s -m 3 $FILENAME
     xclip -selection clipboard -t image/png $FILENAME
 
@@ -30,5 +29,5 @@ elif [ -z "$1" ]; then
 
 # Display error if command fails
 else
-    notify-send "You made a fucksy wucksy" -i $NOTIFICATION_PICTURE 
+    notify-send "You made a fucky wucky" -i $NOTIFICATION_PICTURE 
 fi
