@@ -2,14 +2,14 @@
 
 source "`ueberzug library`"
 
-Y_AXIS=$(expr $(tput lines) / 4 )
+#Y_AXIS=$(expr $(tput lines) / 4 )
 X_AXIS=$(expr $(tput cols) / 4 )
 
 for (( i=1; i<=$#; i++ ))
 do
     clear
     {
-    ImageLayer::add [identifier]="Image${i}" [x]=$X_AXIS [y]=$Y_AXIS [path]=${!i}
+    ImageLayer::add [identifier]="Image${i}" [x]=$X_AXIS [y]=0 [path]=${!i}
     read
     } | ImageLayer  
     

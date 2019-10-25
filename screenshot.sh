@@ -7,12 +7,13 @@ NOTIFICATION_PICTURE="/home/solarinas/.scripts/gabriel-notification-icons/proxy.
 # Screenshot selection
 if [[ "$1" = "-s" ]]; then
     maim -o -u -d 1 -s -m 3 $FILENAME
+    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE 
     xclip -selection clipboard -t image/png $FILENAME
 
 # Screenshot active window
 elif [[ $1 = "-u" ]]; then
-    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE 
     maim -u -d 1 -i $(xdotool getactivewindow) -m 3 $FILENAME
+    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE 
     xclip -selection clipboard -t image/png $FILENAME
 
 # Screenshot primary desktop
