@@ -2,33 +2,27 @@
 
 SCREENSHOTS_DIR=~/Pictures/Screenshots
 FILENAME=$SCREENSHOTS_DIR/$(date +%F_%H%M%S).png
-NOTIFICATION_PICTURE="/home/solarinas/.scripts/gabriel-notification-icons/proxy.duckduckgo.com.jpg"
+#COWBOY="~/.emacs.d/GabEmacs2.png"
 
-# Screenshot selection
+function after_screenshot {
+    COWBOY="$HOME/.emacs.d/GabEmacs2.png"
+
+    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i "$COWBOY"
+    xclip -selection clipboard -t image/png "$FILENAME"
+}
+
 if [[ "$1" = "-s" ]]; then
     maim -o -u -d 1 -s -m 3 $FILENAME
-    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE 
-    xclip -selection clipboard -t image/png $FILENAME
-
-# Screenshot active window
+    after_screenshot
 elif [[ $1 = "-u" ]]; then
     maim -u -d 1 -i $(xdotool getactivewindow) -m 3 $FILENAME
-    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE 
-    xclip -selection clipboard -t image/png $FILENAME
-
-# Screenshot primary desktop
+    after_screenshot
 elif [[ $1 = "-m" ]]; then
-    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE
     maim -u -d 1 -g 1920x1080 -m 3 $FILENAME
-    xclip -selection clipboard -t image/png $FILENAME
-
-# Temporary screenshot of whole desktop
+    after_screenshot
 elif [ -z "$1" ]; then
-    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i $NOTIFICATION_PICTURE
-    maim /tmp/screenshot.png 
-    xclip -selection clipboard -t image/png /tmp/screenshot.png
-
-# Display error if command fails
+    maim /tmp/screenshot.png
+    after_screenshot
 else
-    notify-send "You made a fucky wucky" -i $NOTIFICATION_PICTURE 
+    notify-send "You made a fuck wucky" -i $COWBOY
 fi
