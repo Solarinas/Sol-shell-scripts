@@ -2,7 +2,6 @@
 
 SCREENSHOTS_DIR=~/Pictures/Screenshots
 FILENAME=$SCREENSHOTS_DIR/$(date +%F_%H%M%S).png
-#COWBOY="~/.emacs.d/GabEmacs2.png"
 
 function after_screenshot {
     ICON="$HOME/.emacs.d/GabEmacs2.png"
