@@ -1,0 +1,8 @@
+#!/bin/sh
+if [[ $1 == *.png ]]; then
+    xclip -selection clipboard -t image/png "$1"
+elif [[ -z $1 ]]; then 
+     echo "Please input a file"
+else
+    anytopnm "$1" | pnmtopng | xclip -selection clipboard -t image/png
+fi 

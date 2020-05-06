@@ -1,0 +1,36 @@
+#!/bin/bash
+
+SCREENSHOTS_DIR=~/Pictures/Screenshots
+FILENAME=$SCREENSHOTS_DIR/$(date +%F_%H%M%S).png
+
+function after_screenshot {
+    ICON="$HOME/.emacs.d/GabEmacs2.png"
+
+    notify-send "Screenshot taken Goshujin-sama~" --urgency low -i "$ICON"
+    xclip -selection clipboard -t image/png "$FILENAME"
+}
+
+# Screenshot selection
+if [[ "$1" = "-s" ]]; then
+    maim -o -u -d 1 -s -m 3 "$FILENAME"
+    after_screenshot
+    
+# Screenshot active window
+elif [[ $1 = "-u" ]]; then
+    maim -u -d 1 -i "$(xdotool getactivewindow)" -m 3 "$FILENAME"
+    after_screenshot
+
+# Screenshot primary desktop
+elif [[ $1 = "-m" ]]; then
+    maim -u -d 1 -g 1920x1080 -m 3 "$FILENAME"
+    after_screenshot
+
+# Temporary screenshot of whole desktop
+elif [ -z "$1" ]; then
+    maim /tmp/screenshot.png
+    after_screenshot
+
+# Display error if command fails
+else
+    notify-send "You made a fucky wucky"
+fi
