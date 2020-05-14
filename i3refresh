@@ -1,0 +1,6 @@
+#!/bin/bash
+i3CONFIG=$HOME/.config/i3
+while inotifywait -e modify "$i3CONFIG"; do
+   i3-msg restart
+done
+
