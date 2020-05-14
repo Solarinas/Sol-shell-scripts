@@ -1,0 +1,3 @@
+#!/bin/bash
+DIR=$(readlink "/proc/$(pgrep -P "$(xdotool getactivewindow getwindowpid)" | head -n1)/cwd")
+kitty -d "$DIR"
