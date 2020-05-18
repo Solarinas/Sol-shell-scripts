@@ -1,0 +1,11 @@
+#!/bin/bash
+pacman -Sy
+UPDATES=$(pacman -Qu | wc -l)
+
+if [[ $UPDATES == 0 ]]; then
+	:
+elif [[ $UPDATES == 1 ]]; then
+    sudo -u solarinas DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "You have $UPDATES update available"
+else
+    sudo -u solarinas DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "You have $UPDATES updates available"
+ fi 
