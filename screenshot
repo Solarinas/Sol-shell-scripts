@@ -34,5 +34,5 @@ elif [ -z "$1" ]; then
 
 # Display error if command fails
 else
-    notify-send "You made a fucky wucky"
+    echo "$1" "is not a valid argument"
 fi
